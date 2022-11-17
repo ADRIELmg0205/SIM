@@ -1,0 +1,46 @@
+Fluxo de Casos de Uso
+
+Atores: Cliente, Vendedor e Caixa
+
+
+Fluxo Normal:
+1- informar dados cadastrais
+2- solicitar produtos 
+3- verificar estoque 
+4- emitir pedido 
+5- vincular produtos 
+6- efetuar pagamento 
+7- verificar recebimento do pagamento
+8- emitir nota fiscal
+9- atualizar estoque
+10- enviar produtos
+11- cliente confiramr recebimento dos produtos
+
+Fluxo Alternativo: irregularidade nos dados cadastrais
+1a- sistema informa irregularidade nos dados
+1b - cliente corrige os dados
+retoma passo 1
+
+Fluxo Alternativo: Produtos sem estoque
+3a - Sistema informa a falta de produtos
+3b - cliente muda a quantidade de produtos do pedido ou seleciona outros produtos
+retoma ao passo 2
+
+Fluxo Alternativo: Pagamento não recebido
+7a - informar ao cliente que o pagamento não foi efetuado
+7b - cliente efetua pagamento
+retoma ao passo 6
+
+Fluxo Alternativo: Endereço de entrega inválido
+10a - informar endereço inválido
+10b - cliente corrigir os dados de entrega
+retoma ao passo 1
+
+Fluxo Alternativo: Cliente não recebeu os produtos
+11a - cliente informa ao vendedor tal ocorrido
+11b - vendedor entra em contato o meio de entrega ou envia novo pedido
+retoma passo 10
+
+Fluxo Alternativo: pedido cancelado
+cliente solicita o cancelamento do pedido em qualquer parte do sistema
+retoma ao passo 1
