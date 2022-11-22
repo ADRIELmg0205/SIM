@@ -1,5 +1,7 @@
 TAREFAS A FAZER 
 
+QUEM FOR TESTAR, LEMBRAR DE CRIAR O BANCO COM O NOME sim_banco
+
 Criar classes de venda e cliente
 
 apagar a seguinte linha de todas as classes:
