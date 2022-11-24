@@ -1,0 +1,15 @@
+create procedure  venda_pro ()
+begin
+	$$
+	select codven, vlrven, codpro, qtdest  from venda, estoque;
+$$
+end
+
+
+create procedure descri_prod ()
+begin
+	$$
+	select nompro, descpro  from produto;
+$$
+end
+
