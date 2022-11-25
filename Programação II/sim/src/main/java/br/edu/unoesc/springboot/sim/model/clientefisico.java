@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -32,7 +34,8 @@ public class clientefisico implements Serializable{
 	@Column(name = "idaclf")
 	private int idadeclientefisico;
 	
-	@Column(name = "cepend")
+	@ManyToOne
+	@JoinColumn(name = "cepend")
 	private endereco cependerecoclientefisico;
 
 	public Long getCpfclientefisico() {

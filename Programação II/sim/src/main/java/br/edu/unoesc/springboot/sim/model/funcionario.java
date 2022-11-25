@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
 
 @Entity
 public class funcionario implements Serializable{
@@ -35,10 +38,12 @@ public class funcionario implements Serializable{
 	@Column(name = "salfun")
 	private Double salariofuncionario;
 	
-	@Column(name = "codset")
+	@ManyToOne
+	@JoinColumn(name = "codset")
 	private setor codigosetorfuncionario;
 	
-	@Column(name = "cepend")
+	@ManyToOne
+	@JoinColumn(name = "cepend")
 	private endereco cependerecofuncionario;
 
 	public Long getCpffuncionario() {

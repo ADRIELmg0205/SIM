@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -32,7 +34,8 @@ public class produto implements Serializable{
 	@Column(name = "dnumpro")
 	private int numeroproduto;
 	
-	@Column(name = "codmat")
+	@ManyToOne
+	@JoinColumn(name = "codmat")
 	private materiaprima codigomateriaprimaproduto;
 
 	public Long getCodigoproduto() {
