@@ -11,7 +11,6 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class endereco implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "cepend")
@@ -80,8 +79,5 @@ public class endereco implements Serializable{
 		this.complementoendereco = complementoendereco;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 }
 

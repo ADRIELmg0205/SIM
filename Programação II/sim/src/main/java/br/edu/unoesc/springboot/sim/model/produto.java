@@ -21,7 +21,6 @@ public class produto implements Serializable{
 	@Column(name = "codpro")
 	private Long codigoproduto;
 	
-	@Id
 	@Column(name = "refpro")
 	private String referenciaproduto;
 	

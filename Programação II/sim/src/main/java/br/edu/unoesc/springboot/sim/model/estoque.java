@@ -13,17 +13,12 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class estoque implements Serializable{
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "codpro")
 	private produto codigoprodutoestoque;
-	
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "refpro")
-	private produto referenciaprodutoestoque;
 	
 	@Column(name = "qtdest")
 	private int quantidadeestoque;
@@ -36,14 +31,6 @@ public class estoque implements Serializable{
 		this.codigoprodutoestoque = codigoprodutoestoque;
 	}
 
-	public produto getReferenciaprodutoestoque() {
-		return referenciaprodutoestoque;
-	}
-
-	public void setReferenciaprodutoestoque(produto referenciaprodutoestoque) {
-		this.referenciaprodutoestoque = referenciaprodutoestoque;
-	}
-
 	public int getQuantidadeestoque() {
 		return quantidadeestoque;
 	}
@@ -52,9 +39,9 @@ public class estoque implements Serializable{
 		this.quantidadeestoque = quantidadeestoque;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+//	public static long getSerialversionuid() {
+//		return serialVersionUID;
+//	}
 
 	
 }

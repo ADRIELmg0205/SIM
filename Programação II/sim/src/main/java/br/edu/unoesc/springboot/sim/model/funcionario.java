@@ -14,7 +14,6 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class funcionario implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "cpffun")
@@ -117,12 +116,5 @@ public class funcionario implements Serializable{
 	public void setCependerecofuncionario(endereco cependerecofuncionario) {
 		this.cependerecofuncionario = cependerecofuncionario;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-	
 }
 

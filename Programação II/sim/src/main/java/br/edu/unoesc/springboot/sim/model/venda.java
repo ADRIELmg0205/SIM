@@ -24,26 +24,24 @@ public class venda implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "codpro")
-	private int codigoproduto ;
+	private produto codigoproduto ;
 	
-	@ManyToOne
-	@JoinColumn(name = "refpro")
-	private String referenciaproduto;
-	
-
 	@ManyToOne
 	@JoinColumn(name = "cpfven")
-	private Long cpfvendedor;
+	private vendedor cpfvendedor;
 	
 	@ManyToOne
 	@JoinColumn(name = "codcli")
-	private Long codigocliente;
+	private cliente codigocliente;
 
 	@Column(name = "datven")
 	private Date datavenda;
 	
 	@Column(name = "vlrven")
 	private Double valorvenda;
+
+	@Column(name = "qtdven")
+	private int qtdvenda;
 
 	public Long getCodigovenda() {
 		return codigovenda;
@@ -53,35 +51,27 @@ public class venda implements Serializable{
 		this.codigovenda = codigovenda;
 	}
 
-	public int getCodigoproduto() {
+	public produto getCodigoproduto() {
 		return codigoproduto;
 	}
 
-	public void setCodigoproduto(int codigoproduto) {
+	public void setCodigoproduto(produto codigoproduto) {
 		this.codigoproduto = codigoproduto;
 	}
 
-	public String getReferenciaproduto() {
-		return referenciaproduto;
-	}
-
-	public void setReferenciaproduto(String referenciaproduto) {
-		this.referenciaproduto = referenciaproduto;
-	}
-
-	public Long getCpfvendedor() {
+	public vendedor getCpfvendedor() {
 		return cpfvendedor;
 	}
 
-	public void setCpfvendedor(Long cpfvendedor) {
+	public void setCpfvendedor(vendedor cpfvendedor) {
 		this.cpfvendedor = cpfvendedor;
 	}
 
-	public Long getCodigocliente() {
+	public cliente getCodigocliente() {
 		return codigocliente;
 	}
 
-	public void setCodigocliente(Long codigocliente) {
+	public void setCodigocliente(cliente codigocliente) {
 		this.codigocliente = codigocliente;
 	}
 
@@ -101,10 +91,18 @@ public class venda implements Serializable{
 		this.valorvenda = valorvenda;
 	}
 
+	public int getQtdvenda() {
+		return qtdvenda;
+	}
+
+	public void setQtdvenda(int qtdvenda) {
+		this.qtdvenda = qtdvenda;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	
 }
 

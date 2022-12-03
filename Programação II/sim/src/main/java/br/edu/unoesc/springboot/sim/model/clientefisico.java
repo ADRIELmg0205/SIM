@@ -19,24 +19,8 @@ public class clientefisico implements Serializable{
 	@Column(name = "cpfclf")
 	private Long cpfclientefisico;
 	
-	@Column(name = "nomclf")
-	private String nomeclientefisico;
-
-	@Column(name = "telclf")
-	private String telefoneclientefisico;
-	
-	@Column(name = "emaclf")
-	private String emailclientefisico;
-	
-	@Column(name = "sexclf")
-	private char sexoclientefisico;
-	
-	@Column(name = "idaclf")
-	private int idadeclientefisico;
-	
-	@ManyToOne
-	@JoinColumn(name = "cepend")
-	private endereco cependerecoclientefisico;
+	@JoinColumn(name = "codcli")
+	private cliente codigocliente;
 
 	public Long getCpfclientefisico() {
 		return cpfclientefisico;
@@ -46,52 +30,12 @@ public class clientefisico implements Serializable{
 		this.cpfclientefisico = cpfclientefisico;
 	}
 
-	public String getNomeclientefisico() {
-		return nomeclientefisico;
+	public cliente getCodigocliente() {
+		return codigocliente;
 	}
 
-	public void setNomeclientefisico(String nomeclientefisico) {
-		this.nomeclientefisico = nomeclientefisico;
-	}
-
-	public String getTelefoneclientefisico() {
-		return telefoneclientefisico;
-	}
-
-	public void setTelefoneclientefisico(String telefoneclientefisico) {
-		this.telefoneclientefisico = telefoneclientefisico;
-	}
-
-	public String getEmailclientefisico() {
-		return emailclientefisico;
-	}
-
-	public void setEmailclientefisico(String emailclientefisico) {
-		this.emailclientefisico = emailclientefisico;
-	}
-
-	public char getSexoclientefisico() {
-		return sexoclientefisico;
-	}
-
-	public void setSexoclientefisico(char sexoclientefisico) {
-		this.sexoclientefisico = sexoclientefisico;
-	}
-
-	public int getIdadeclientefisico() {
-		return idadeclientefisico;
-	}
-
-	public void setIdadeclientefisico(int idadeclientefisico) {
-		this.idadeclientefisico = idadeclientefisico;
-	}
-
-	public endereco getCependerecoclientefisico() {
-		return cependerecoclientefisico;
-	}
-
-	public void setCependerecoclientefisico(endereco cependerecoclientefisico) {
-		this.cependerecoclientefisico = cependerecoclientefisico;
+	public void setCodigocliente(cliente codigocliente) {
+		this.codigocliente = codigocliente;
 	}
 
 	public static long getSerialversionuid() {

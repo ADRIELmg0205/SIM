@@ -21,13 +21,24 @@ public class cliente implements Serializable{
 	@Column(name = "codcli")
 	private Long codigocliente;
 	
-	@ManyToOne
-	@JoinColumn(name = "cpfclf")
-	private String cpfclientefisico;
+	@Column(name = "nomclf")
+	private String nomecliente;
+
+	@Column(name = "telclf")
+	private String telefonecliente;
+	
+	@Column(name = "emaclf")
+	private String emailcliente;
+	
+	@Column(name = "sexclf")
+	private char sexocliente;
+	
+	@Column(name = "idaclf")
+	private int idadecliente;
 	
 	@ManyToOne
-	@JoinColumn(name = "cnpclj")
-	private String cnpjclientejuridico;
+	@JoinColumn(name = "cepend")
+	private endereco cependerecocliente;
 
 	public Long getCodigocliente() {
 		return codigocliente;
@@ -37,20 +48,52 @@ public class cliente implements Serializable{
 		this.codigocliente = codigocliente;
 	}
 
-	public String getCpfclientefisico() {
-		return cpfclientefisico;
+	public String getNomecliente() {
+		return nomecliente;
 	}
 
-	public void setCpfclientefisico(String cpfclientefisico) {
-		this.cpfclientefisico = cpfclientefisico;
+	public void setNomecliente(String nomecliente) {
+		this.nomecliente = nomecliente;
 	}
 
-	public String getCnpjclientejuridico() {
-		return cnpjclientejuridico;
+	public String getTelefonecliente() {
+		return telefonecliente;
 	}
 
-	public void setCnpjclientejuridico(String cnpjclientejuridico) {
-		this.cnpjclientejuridico = cnpjclientejuridico;
+	public void setTelefonecliente(String telefonecliente) {
+		this.telefonecliente = telefonecliente;
+	}
+
+	public String getEmailcliente() {
+		return emailcliente;
+	}
+
+	public void setEmailcliente(String emailcliente) {
+		this.emailcliente = emailcliente;
+	}
+
+	public char getSexocliente() {
+		return sexocliente;
+	}
+
+	public void setSexocliente(char sexocliente) {
+		this.sexocliente = sexocliente;
+	}
+
+	public int getIdadecliente() {
+		return idadecliente;
+	}
+
+	public void setIdadecliente(int idadecliente) {
+		this.idadecliente = idadecliente;
+	}
+
+	public endereco getCependerecocliente() {
+		return cependerecocliente;
+	}
+
+	public void setCependerecocliente(endereco cependerecocliente) {
+		this.cependerecocliente = cependerecocliente;
 	}
 
 	public static long getSerialversionuid() {

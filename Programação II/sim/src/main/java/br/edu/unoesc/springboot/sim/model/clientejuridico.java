@@ -21,16 +21,10 @@ public class clientejuridico implements Serializable{
 	
 	@Column(name = "razclj")
 	private String razaoclientejuridico;
-
-	@Column(name = "telclj")
-	private String telefoneclientejuridico;
-	
-	@Column(name = "emaclj")
-	private String emailclientejuridico;
 	
 	@ManyToOne
-	@JoinColumn(name = "cepend")
-	private endereco cependerecoclientejuridico;
+	@JoinColumn(name = "codcli")
+	private cliente codigocliente;
 
 	public Long getCnpjclientejuridico() {
 		return cnpjclientejuridico;
@@ -48,34 +42,18 @@ public class clientejuridico implements Serializable{
 		this.razaoclientejuridico = razaoclientejuridico;
 	}
 
-	public String getTelefoneclientejuridico() {
-		return telefoneclientejuridico;
+	public cliente getCodigocliente() {
+		return codigocliente;
 	}
 
-	public void setTelefoneclientejuridico(String telefoneclientejuridico) {
-		this.telefoneclientejuridico = telefoneclientejuridico;
-	}
-
-	public String getEmailclientejuridico() {
-		return emailclientejuridico;
-	}
-
-	public void setEmailclientejuridico(String emailclientejuridico) {
-		this.emailclientejuridico = emailclientejuridico;
-	}
-
-	public endereco getCependerecoclientejuridico() {
-		return cependerecoclientejuridico;
-	}
-
-	public void setCependerecoclientejuridico(endereco cependerecoclientejuridico) {
-		this.cependerecoclientejuridico = cependerecoclientejuridico;
+	public void setCodigocliente(cliente codigocliente) {
+		this.codigocliente = codigocliente;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
 	
 }
 
