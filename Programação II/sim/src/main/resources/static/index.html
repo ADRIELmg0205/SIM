@@ -11,10 +11,67 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<title>Spring boot - teste</title>
+<title>Sim</title>
+<style type = "text/css">
+html{
+	margin: 5%;
+}
+</style>
+
 </head>
 <body>
-	<h3>Spring boot testando 1, 2, 3, ...</h3>
+	<h3>Cadastro de Cliente</h3>
+	
+<button type="button" class="btn btn-primary" onclick="salvarcliente()">Salvar</button>
+		
+<button type="button" class="btn btn-secondary" onclick ="document.getElementById('formCadastroUser').reset();">Novo</button>
+
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPesquisarUser">Pesquisar</button>	
+	
+	
+	<div class="modal fade" id="modalPesquisarUser" tabindex="-1"
+	aria-labelledby="Pesquisar Usuários" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+					usuários:</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Fechar"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="mb-3">
+						<label for="nomeBusca" class="col-form-label">Informe o
+nome:</label> <input type="text" class="form-control" id="nomeBusca">
+					</div>
+						<button type="button" class="btn btn-success" onclick="pesquisarUsuario()">Buscar</button>
+				</form>
+				<div style="height:300px; overflow:auto;">
+<table class="table table-striped" id="tabelaresultados">
+<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Editar</th>
+			<th scope="col">Excluir</th>
+		</tr>
+	</thead>
+	<tbody>
+							
+	</tbody>
+</table>
+</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Fechar</button>
+				</div>
+		</div>
+	</div>
+</div>
+	
 	
 	<script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -56,9 +113,7 @@
 		<label for="cependerecocliente" class="form-label">CEP</label> 
 		<input type="number" class="form-control" id="cependerecocliente" >
 	</div>
-</form>
-
-<button type="button" class="btn btn-primary" onclick="salvarcliente()">Salvar</button>
+</form>		
 		
 		<script type"text/javascript">
 		function salvarcliente(){
@@ -69,7 +124,7 @@
 			var emailcliente = $("#emailcliente").val();
 			var sexocliente = $("#sexocliente").val();
 			var cependerecocliente = $("#cependerecocliente").val();
-			if(nome == ""){
+			if(nomecliente == ""){
 				alert("Informe o nome! ");
 				$("#nomecliente").focus();
 				return;
@@ -80,7 +135,7 @@
 					data : JSON.stringify({codigocliente : codigocliente, nomecliente : nomecliente, idadecliente: idadecliente, telefonecliente: telefonecliente, emailcliente: emailcliente, sexocliente: sexocliente, cependerecocliente: cependerecocliente}),
 					contentType : "application/json; charset=utf-8",
 					success : function(response){
-						$("#codigocliente").val(response.id);
+						$("#codigocliente").val(response.codigocliente);
 						alert("Salvo com sucesso!");
 					}
 				}).fail(function (xhr, status, errorThrown){
@@ -89,6 +144,66 @@
 			}
 
 		}
+		
+		function pesquisarUsuario(){
+			var nomeB = $("#nomeBusca").val();
+			if (nomeB !=null && nomeB.trim()!=''){
+				$.ajax({ 
+					method : "GET", 
+					url : "buscarpornomecliente", 
+					data : "nome=" + nomeB,
+					success : 
+					function(response){
+						$("#tabelaresultados > tbody > tr").remove();
+						for (var i = 0; i < response.length; i++){
+							$('#tabelaresultados > tbody').append('<tr id="'+response[i].codigocliente +'"><td>' +
+									response[i].codigocliente + '</td><td>' + 
+									response[i].nomecliente +'</td><td> <button type="button" onclick="colocarEmEdicao('+response[i].codigocliente+')"class="btn btn-primary">+</button></td><td><button type="button" class="btn btn-danger" onclick="excluirCliente('+response[i].codigocliente+')">x</button></td></tr>')					
+						}
+					}
+				}).fail(function (xhr, status, errorThrown){ 
+					alert("Erro ao buscar usuário: " + xhr.responseText); 
+				}); 
+					
+			}		
+		}
+		function colocarEmEdicao(codigocliente) {		  
+			  $.ajax({
+					method : "GET",
+					url : "buscaruseridcliente",
+					data : "codigocliente=" + codigocliente ,
+					success : function(response) {
+						$("#codigocliente").val(response.codigocliente);
+						$("#nomecliente").val(response.nomecliente);
+						$("#idadecliente").val(response.idadecliente);	
+						$("#telefonecliente").val(response.telefonecliente);	
+						$("#emailcliente").val(response.emailcliente);	
+						$("#sexocliente").val(response.sexocliente);	
+						$("#cependerecocliente").val(response.cependerecocliente);
+						$('#modalPesquisarUser').modal('hide');			  
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Erro ao buscar usuario por id: " + xhr.responseText);
+				});		  
+		  }
+		
+		function excluirCliente(codigocliente){		
+			if(confirm('Deseja realmente excluir?')) {		
+			 $.ajax({
+				method : "DELETE",
+				url : "deletecliente",
+				data : "idclient=" + codigocliente ,
+				success : function(response) {					
+					$('#'+ codigocliente).remove();
+					alert(response);	  
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao deletar usuario por id: " + xhr.responseText);
+			});		 
+		}		
+		}
+
+
 	</script>
 		
 		

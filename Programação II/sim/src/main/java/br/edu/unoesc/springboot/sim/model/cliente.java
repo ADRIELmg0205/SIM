@@ -36,9 +36,12 @@ public class cliente implements Serializable{
 	@Column(name = "idaclf")
 	private int idadecliente;
 	
-	@ManyToOne
-	@JoinColumn(name = "cepend")
-	private endereco cependerecocliente;
+	@Column(name = "cependcli")
+	private Long cependerecocliente;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "cepend")
+//	private endereco cependerecocliente;
 
 	public Long getCodigocliente() {
 		return codigocliente;
@@ -88,16 +91,26 @@ public class cliente implements Serializable{
 		this.idadecliente = idadecliente;
 	}
 
-	public endereco getCependerecocliente() {
+//	public endereco getCependerecocliente() {
+//		return cependerecocliente;
+//	}
+//
+//	public void setCependerecocliente(endereco cependerecocliente) {
+//		this.cependerecocliente = cependerecocliente;
+//	}
+
+	
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Long getCependerecocliente() {
 		return cependerecocliente;
 	}
 
-	public void setCependerecocliente(endereco cependerecocliente) {
+	public void setCependerecocliente(Long cependerecocliente) {
 		this.cependerecocliente = cependerecocliente;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	

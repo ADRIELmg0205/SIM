@@ -1,14 +1,1 @@
-TAREFAS A FAZER 
-
-QUEM FOR TESTAR, LEMBRAR DE CRIAR O BANCO COM O NOME sim_banco
-
-Criar classes de venda e cliente
-
-apagar a seguinte linha de todas as classes:
-private static final long serialVersionUID = 1L;
-
-declarar fk nessas classes, fiz tudo direto sem declarar oque era fk
-
-fazer igual ao projeto de exemplo do Roberson ExSpringLiquidbase
-
-Criar classe repository, onde ficam as funções salvar, deletar, pesquisar....
+Tirar 10

@@ -62,9 +62,18 @@ public class GreetingsController {
 	    	List<setor> setores = setorRepository.findAll();
 	    	return new ResponseEntity<List<setor>>(setores, HttpStatus.OK) ;
 	    }
-
+		
 	@Autowired // injeção de dependência
 	private ClienteRepository clienteRepository;
+//	
+//	@RequestMapping(value = "GravarCliente/{nomecliente}", method = RequestMethod.GET)
+//	@ResponseStatus(HttpStatus.OK)
+//	 public String testeGravarCliente(@PathVariable String nomecliente){
+//		cliente cliente = new cliente();
+//		cliente.setNomecliente(nomecliente);
+//		clienteRepository.save(cliente);
+//		return "Gravado";    	
+//	}
 	
 	@PostMapping(value = "salvarcliente")
     @ResponseBody
@@ -82,8 +91,8 @@ public class GreetingsController {
 
     @GetMapping(value = "buscaruseridcliente")
 	@ResponseBody
-	public ResponseEntity<cliente> buscaruseridcliente(@RequestParam(name = "idclient") Long idclient){
-		cliente cliente = clienteRepository.findById(idclient).get();
+	public ResponseEntity<cliente> buscaruseridcliente(@RequestParam(name = "codigocliente") Long codigocliente){
+		cliente cliente = clienteRepository.findById(codigocliente).get();
 		return new ResponseEntity<cliente>(cliente, HttpStatus.OK);
 	}
 
