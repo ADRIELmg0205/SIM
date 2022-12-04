@@ -37,11 +37,11 @@ public class GreetingsController {
      * @param name the name to greet
      * @return greeting text
      */
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public String greetingText(@PathVariable String name) {
-        return "Hello " + name + "!";
-    }
+//    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    public String greetingText(@PathVariable String name) {
+//        return "Hello " + name + "!";
+//    }
     
 
     @Autowired // injeção de dependência
@@ -66,30 +66,30 @@ public class GreetingsController {
 	@Autowired // injeção de dependência
 	private ClienteRepository clienteRepository;
 	
-	@PostMapping(value = "salvar")
+	@PostMapping(value = "salvarcliente")
     @ResponseBody
-    public ResponseEntity<cliente> salvar(@RequestBody cliente cliente){
+    public ResponseEntity<cliente> salvarcliente(@RequestBody cliente cliente){
     	cliente client = clienteRepository.save(cliente);
     	return new ResponseEntity<cliente>(client, HttpStatus.CREATED);
     }
     
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "deletecliente")
 	@ResponseBody
-	public ResponseEntity<String> delete(@RequestParam Long idclient) {
+	public ResponseEntity<String> deletecliente(@RequestParam Long idclient) {
 		clienteRepository.deleteById(idclient);
 		return new ResponseEntity<String>("Cliente excluido com sucesso", HttpStatus.OK);
 	}
 
-    @GetMapping(value = "buscaruserid")
+    @GetMapping(value = "buscaruseridcliente")
 	@ResponseBody
-	public ResponseEntity<cliente> buscaruserid(@RequestParam(name = "idclient") Long idclient){
+	public ResponseEntity<cliente> buscaruseridcliente(@RequestParam(name = "idclient") Long idclient){
 		cliente cliente = clienteRepository.findById(idclient).get();
 		return new ResponseEntity<cliente>(cliente, HttpStatus.OK);
 	}
 
-	@PutMapping(value = "atualizar")
+	@PutMapping(value = "atualizarcliente")
 	@ResponseBody
-	public ResponseEntity<?> atualizar(@RequestBody cliente cliente){
+	public ResponseEntity<?> atualizarcliente(@RequestBody cliente cliente){
 		if(cliente.getCodigocliente()==null) {
 			return new ResponseEntity<String>("Id não informado para atualizar", HttpStatus.OK);
 		}
@@ -97,12 +97,12 @@ public class GreetingsController {
 		return new ResponseEntity<cliente>(client, HttpStatus.OK);
 	}
 
-//	@GetMapping(value = "buscarpornome")
-//	@ResponseBody
-//	public ResponseEntity<List<cliente>>bucarPorNome(@RequestParam(name = "nome") String nome){
-//		List<cliente> cliente = clienteRepository.buscarPorNome(nome.trim().toUpperCase());
-//		return new ResponseEntity<List<cliente>>(cliente, HttpStatus.OK);
-//	}
+	@GetMapping(value = "buscarpornomecliente")
+	@ResponseBody
+	public ResponseEntity<List<cliente>>bucarPorNomeCliente(@RequestParam(name = "nome") String nome){
+		List<cliente> client = clienteRepository.buscarPorNomeCliente(nome.trim().toUpperCase());
+		return new ResponseEntity<List<cliente>>(client, HttpStatus.OK);
+	}
 
 
 }

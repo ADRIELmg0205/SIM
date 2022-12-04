@@ -10,8 +10,8 @@ import br.edu.unoesc.springboot.sim.model.cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<cliente, Long> {
-//	@Query(value = "select c from cliente c where upper(trim(c.nomcli)) like %?1%")
-//	List<cliente> buscarPorNome(String nome);
+	@Query(value = "select c from cliente c where upper(trim(c.nomecliente)) like %?1%")
+	List<cliente> buscarPorNomeCliente(String nome);
 
 	
 }
