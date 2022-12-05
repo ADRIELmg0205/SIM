@@ -1,6 +1,6 @@
 -- criando indice para nome/razao social do cliente
-create index clf_nomclf_sk
-on clientefisico(nomclf);
+create index cli_nomcli_sk
+on cliente(nomclf);
 
 create index clj_razclj_sk
 on clientejuridico(razclj);
