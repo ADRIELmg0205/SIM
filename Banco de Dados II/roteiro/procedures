@@ -1,0 +1,15 @@
+
+
+create procedure  reajuste_sal (salfun numeric )
+return void 
+$$
+begin
+	if salfun <= 2000 then 
+	alter table funcionario = salfun *1.3;
+elsif salfun <= 4000 then
+alter table funcionario = salfun*1.2;
+else
+alter table funcionario = salfun*1.1;
+	end if;
+end;
+$$
