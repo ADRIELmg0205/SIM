@@ -1,7 +1,7 @@
 -- criando view para mostrar nome do cliente que esta realizando a compra
 create view nomclf_vw as
-select nomclf from clientefisico cf
-inner join cliente c on c.cpfclf = cf.cpfclf 
+select nomcli from cliente c
+inner join clientefisico cf on c.codcli = cf.codcli 
 inner join venda v on c.codcli = v.codcli;
 
 -- criando view para mostrar contato dos fornecedores cujam são de Santa Catarina
