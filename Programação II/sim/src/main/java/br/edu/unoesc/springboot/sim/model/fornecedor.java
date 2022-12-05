@@ -11,6 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+* 
+* @author Adriel/Gustavo
+* @version 1.0
+* 
+*/
+
 @Entity
 public class fornecedor implements Serializable{
 	private static final long serialVersionUID = 1L;

@@ -9,6 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+/**
+* 
+* @author Adriel/Gustavo
+* @version 1.0
+* 
+*/
+
 @Entity
 public class endereco implements Serializable{
 	

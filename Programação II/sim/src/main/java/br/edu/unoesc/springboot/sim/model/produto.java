@@ -11,6 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+* 
+* @author Adriel/Gustavo
+* @version 1.0
+* 
+*/
+
+
 @Entity
 @SequenceGenerator(name = "seq_produto", sequenceName = "seq_produto", allocationSize = 1, initialValue = 1)
 public class produto implements Serializable{
@@ -30,12 +38,15 @@ public class produto implements Serializable{
 	@Column(name = "prepro")
 	private Double precoproduto;
 	
-	@Column(name = "dnumpro")
+	@Column(name = "numpro")
 	private int numeroproduto;
 	
-	@ManyToOne
-	@JoinColumn(name = "codmat")
-	private materiaprima codigomateriaprimaproduto;
+	@Column(name = "codmat")
+	private int codigomateriaprimaproduto;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "codmat")
+//	private materiaprima codigomateriaprimaproduto;
 
 	public Long getCodigoproduto() {
 		return codigoproduto;
@@ -77,16 +88,24 @@ public class produto implements Serializable{
 		this.numeroproduto = numeroproduto;
 	}
 
-	public materiaprima getCodigomateriaprimaproduto() {
-		return codigomateriaprimaproduto;
-	}
-
-	public void setCodigomateriaprimaproduto(materiaprima codigomateriaprimaproduto) {
-		this.codigomateriaprimaproduto = codigomateriaprimaproduto;
-	}
+//	public materiaprima getCodigomateriaprimaproduto() {
+//		return codigomateriaprimaproduto;
+//	}
+//
+//	public void setCodigomateriaprimaproduto(materiaprima codigomateriaprimaproduto) {
+//		this.codigomateriaprimaproduto = codigomateriaprimaproduto;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public int getCodigomateriaprimaproduto() {
+		return codigomateriaprimaproduto;
+	}
+
+	public void setCodigomateriaprimaproduto(int codigomateriaprimaproduto) {
+		this.codigomateriaprimaproduto = codigomateriaprimaproduto;
 	}
 	
 	

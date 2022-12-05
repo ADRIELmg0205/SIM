@@ -12,6 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+* 
+* @author Adriel/Gustavo
+* @version 1.0
+* 
+*/
+
 @Entity
 @SequenceGenerator(name = "seq_venda", sequenceName = "seq_venda", allocationSize = 1, initialValue = 1)
 public class venda implements Serializable{

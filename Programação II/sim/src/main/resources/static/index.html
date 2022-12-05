@@ -20,6 +20,11 @@ html{
 
 </head>
 <body>
+	<h2>SIM - Slipper Industry Management</h2>
+	<br/>
+<br/>
+<br/>
+	
 	<h3>Cadastro de Cliente</h3>
 	
 <button type="button" class="btn btn-primary" onclick="salvarcliente()">Salvar</button>
@@ -113,6 +118,87 @@ nome:</label> <input type="text" class="form-control" id="nomeBusca">
 		<label for="cependerecocliente" class="form-label">CEP</label> 
 		<input type="number" class="form-control" id="cependerecocliente" >
 	</div>
+</form>	
+
+<br/>
+<br/>
+<br/>
+<h3>Cadastro de Produtos</h3>
+
+<button type="button" class="btn btn-primary" onclick="salvarproduto()">Salvar</button>
+		
+<button type="button" class="btn btn-secondary" onclick ="document.getElementById('formCadastroProduto').reset();">Novo</button>
+
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalPesquisarProduto">Pesquisar</button>	
+
+<div class="modal fade" id="modalPesquisarProduto" tabindex="-1"
+	aria-labelledby="Pesquisar Produto" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+					produtos:</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Fechar"></button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="mb-3">
+						<label for="referenciaBusca" class="col-form-label">Informe a referencia:</label> <input type="text" class="form-control" id="referenciaBusca">
+					</div>
+						<button type="button" class="btn btn-success" onclick="pesquisarProduto()">Buscar</button>
+				</form>
+				<div style="height:300px; overflow:auto;">
+<table class="table table-striped" id="tabelaresultadosprodutos">
+<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Referencia</th>
+			<th scope="col">Editar</th>
+			<th scope="col">Excluir</th>
+		</tr>
+	</thead>
+	<tbody>
+							
+	</tbody>
+</table>
+</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary"
+					data-bs-dismiss="modal">Fechar</button>
+				</div>
+		</div>
+	</div>
+</div>
+
+<form action="" id="formCadastroProduto">
+	<div class="mb-3">
+		<label for="codigoproduto" class="form-label">ID</label> 
+		<input type="text" class="form-control" id="codigoproduto" readonly="readonly">
+	</div>
+	<div class="mb-3">
+		<label for="referenciaproduto" class="form-label">Referencia</label> 
+		<input type="text" class="form-control" id="referenciaproduto" placeholder="Informe o nome" required = "required">
+	</div>
+	<div class="mb-3">
+		<label for="descricaoproduto" class="form-label">Descrição/Nome</label> 
+		<input type="text" class="form-control" id="descricaoproduto" >
+	</div>
+	<div class="mb-3">
+		<label for="precoproduto" class="form-label">Preço</label> 
+		<input type="number" class="form-control" id="precoproduto" >
+	</div>
+	<div class="mb-3">
+		<label for="numeroproduto" class="form-label">Número</label> 
+		<input type="number" class="form-control" id="numeroproduto" >
+	</div>
+	<div class="mb-3">
+		<label for="codigomateriaprimaproduto" class="form-label">Codigo da matéria prima (Tipo de Borracha)</label> 
+		<input type="number" class="form-control" id="codigomateriaprimaproduto" >
+	</div>
+	
 </form>		
 		
 		<script type"text/javascript">
@@ -202,7 +288,95 @@ nome:</label> <input type="text" class="form-control" id="nomeBusca">
 			});		 
 		}		
 		}
+		
+		
+		
+		function salvarproduto(){
+			var codigoproduto = $("#codigoproduto").val();
+			var referenciaproduto = $("#referenciaproduto").val();
+			var descricaoproduto = $("#descricaoproduto").val();
+			var precoproduto = $("#precoproduto").val();
+			var numeroproduto = $("#numeroproduto").val();
+			var codigomateriaprimaproduto = $("#codigomateriaprimaproduto").val();
+			if(referenciaproduto == ""){
+				alert("Informe a referencia! ");
+				$("#referenciaproduto").focus();
+				return;
+			}else{
+				$.ajax({
+					method : "POST",
+					url : "salvarproduto",
+					data : JSON.stringify({codigoproduto : codigoproduto, referenciaproduto : referenciaproduto, descricaoproduto: descricaoproduto, precoproduto: precoproduto, numeroproduto: numeroproduto, codigomateriaprimaproduto: codigomateriaprimaproduto}),
+					contentType : "application/json; charset=utf-8",
+					success : function(response){
+						$("#codigocproduto").val(response.codigoproduto);
+						alert("Salvo com sucesso!");
+					}
+				}).fail(function (xhr, status, errorThrown){
+					alert("Erro ao salvar: " + xhr.responseText);
+				});	
+			}
 
+		}
+		
+		function pesquisarProduto(){
+			var nomeC = $("#referenciaBusca").val();
+			if (nomeC !=null && nomeC.trim()!=''){
+				$.ajax({ 
+					method : "GET", 
+					url : "buscarpornomeproduto", 
+					data : "nome=" + nomeC,
+					success : 
+					function(response){
+						$("#tabelaresultadosprodutos > tbody > tr").remove();
+						for (var i = 0; i < response.length; i++){
+							$('#tabelaresultadosprodutos > tbody').append('<tr id="'+response[i].codigoproduto +'"><td>' +
+									response[i].codigoproduto + '</td><td>' + 
+									response[i].referenciaproduto +'</td><td> <button type="button" onclick="colocarEmEdicaoProduto('+response[i].codigoproduto+')"class="btn btn-primary">+</button></td><td><button type="button" class="btn btn-danger" onclick="excluirProduto('+response[i].codigoproduto+')">x</button></td></tr>')					
+						}
+					}
+				}).fail(function (xhr, status, errorThrown){ 
+					alert("Erro ao buscar produto: " + xhr.responseText); 
+				}); 
+					
+			}		
+		}
+		
+		function excluirProduto(codigoproduto){		
+			if(confirm('Deseja realmente excluir?')) {		
+			 $.ajax({
+				method : "DELETE",
+				url : "deleteproduto",
+				data : "codigoproduto=" + codigoproduto ,
+				success : function(response) {					
+					$('#'+ codigoproduto).remove();
+					alert(response);	  
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao deletar produto por id: " + xhr.responseText);
+			});		 
+		}		
+		}
+		
+		function colocarEmEdicaoProduto(codigoproduto) {		  
+			  $.ajax({
+					method : "GET",
+					url : "buscaruseridproduto",
+					data : "codigoproduto=" + codigoproduto ,
+					success : function(response) {
+						$("#codigoproduto").val(response.codigoproduto);
+						$("#referenciaproduto").val(response.referenciaproduto);
+						$("#descricaoproduto").val(response.descricaoproduto);	
+						$("#precoproduto").val(response.precoproduto);	
+						$("#numeroproduto").val(response.numeroproduto);	
+						$("#codigomateriaprimaproduto").val(response.codigomateriaprimaproduto);	
+						$("#cependerecocliente").val(response.cependerecocliente);
+						$('#modalPesquisarProduto').modal('hide');			  
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Erro ao buscar produto por id: " + xhr.responseText);
+				});		  
+		  }
 
 	</script>
 		

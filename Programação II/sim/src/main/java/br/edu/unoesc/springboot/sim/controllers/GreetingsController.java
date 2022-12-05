@@ -19,12 +19,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unoesc.springboot.sim.model.cliente;
+import br.edu.unoesc.springboot.sim.model.produto;
 import br.edu.unoesc.springboot.sim.model.setor;
 import br.edu.unoesc.springboot.sim.repository.ClienteRepository;
+import br.edu.unoesc.springboot.sim.repository.ProdutoRepository;
 import br.edu.unoesc.springboot.sim.repository.SetorRepository;
 
 import br.edu.unoesc.springboot.sim.model.setor;
 import br.edu.unoesc.springboot.sim.repository.SetorRepository;
+
+/**
+* 
+* @author Adriel/Gustavo
+* @version 1.0
+* 
+*/
 
 /**
  *
@@ -112,6 +121,39 @@ public class GreetingsController {
 		List<cliente> client = clienteRepository.buscarPorNomeCliente(nome.trim().toUpperCase());
 		return new ResponseEntity<List<cliente>>(client, HttpStatus.OK);
 	}
+	
+	
+	//parte de produtos
+	
+	@Autowired // injeção de dependência
+	private ProdutoRepository produtoRepository;
+	
+	@GetMapping(value = "buscarpornomeproduto")
+	@ResponseBody
+	public ResponseEntity<List<produto>>bucarPorNomeProduto(@RequestParam(name = "nome") String nome){
+		List<produto> prod = produtoRepository.buscarPorNomeProduto(nome.trim().toUpperCase());
+		return new ResponseEntity<List<produto>>(prod, HttpStatus.OK);
+	}
 
+	@PostMapping(value = "salvarproduto")
+    @ResponseBody
+    public ResponseEntity<produto> salvarproduto(@RequestBody produto produto){
+    	produto produtos = produtoRepository.save(produto);
+    	return new ResponseEntity<produto>(produto, HttpStatus.CREATED);
+    }
+    
+    @DeleteMapping(value = "deleteproduto")
+   	@ResponseBody
+   	public ResponseEntity<String> deleteproduto(@RequestParam Long codigoproduto) {
+   		produtoRepository.deleteById(codigoproduto);
+   		return new ResponseEntity<String>("Produto excluido com sucesso", HttpStatus.OK);
+   	}
+    
+    @GetMapping(value = "buscaruseridproduto")
+   	@ResponseBody
+   	public ResponseEntity<produto> buscaruseridproduto(@RequestParam(name = "codigoproduto") Long codigoproduto){
+   		produto produtos = produtoRepository.findById(codigoproduto).get();
+   		return new ResponseEntity<produto>(produtos, HttpStatus.OK);
+   	}
 
 }

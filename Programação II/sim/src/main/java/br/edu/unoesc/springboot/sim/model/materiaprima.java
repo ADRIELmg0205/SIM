@@ -9,6 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+/**
+* 
+* @author Adriel/Gustavo
+* @version 1.0
+* 
+*/
+
 @Entity
 @SequenceGenerator(name = "seq_materiaprima", sequenceName = "seq_materiaprima", allocationSize = 1, initialValue = 1)
 public class materiaprima implements Serializable{
