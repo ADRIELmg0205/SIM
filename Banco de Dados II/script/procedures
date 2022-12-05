@@ -1,15 +1,17 @@
-create procedure  venda_pro ()
+create or replace function add_estoque(qtd int )
+returns int as
+$body$
 begin
-	$$
-	select codven, vlrven, codpro, qtdest  from venda, estoque;
-$$
+	return qtdest+ qtd;
 end
+$body$
+language plpgsql;
 
-
-create procedure descri_prod ()
+create or replace function add_vend(vend int )
+returns int as
+$body$
 begin
-	$$
-	select nompro, descpro  from produto;
-$$
+	return vend + vlrven;
 end
-
+$body$
+language plpgsql;
